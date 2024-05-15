@@ -18,13 +18,19 @@ export default class User extends compose(BaseModel, AuthFinder) {
   declare id: number
 
   @column()
-  declare fullName: string | null
+  declare username: string | null
 
   @column()
   declare email: string
 
   @column()
   declare password: string
+
+  @column()
+  declare imgPath: string | null
+
+  @column()
+  declare dateOfBirth: Date
 
   @hasMany(() => Cocktail)
   declare cocktails: HasMany<typeof Cocktail>

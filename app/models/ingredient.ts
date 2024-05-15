@@ -23,7 +23,7 @@ export default class Ingredient extends BaseModel {
   declare volume: string
 
   @manyToMany(() => Cocktail)
-  declare Cocktails: ManyToMany<typeof Cocktail>
+  declare cocktails: ManyToMany<typeof Cocktail>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

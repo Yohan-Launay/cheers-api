@@ -21,7 +21,7 @@ export default class Review extends BaseModel {
   declare title: string
 
   @column()
-  declare content: string
+  declare comment: string
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>

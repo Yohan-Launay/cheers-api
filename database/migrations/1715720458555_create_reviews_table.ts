@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.integer('user_id').unsigned().references('users.id')
       table.integer('rating').notNullable()
       table.text('title').notNullable()
-      table.text('content').notNullable()
+      table.text('comment').notNullable()
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })
