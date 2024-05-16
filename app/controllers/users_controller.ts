@@ -14,15 +14,9 @@ export default class UsersController {
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
-    const { username, email, password, imgPath, dateOfBirth } = await request.validateUsing(createUserValidator)
-
-    await User.create({
-      username,
-      email,
-      password,
-      imgPath,
-      dateOfBirth,
-    }) 
+    const data = request.all()
+    const payload = await createUserValidator.validate(data)
+    await User.create(payload)
 
     return response.status(201).json({message: "Utilisateur créé !"})    
   }
@@ -39,15 +33,8 @@ export default class UsersController {
    */
   async update({ params, request, response }: HttpContext) {
     const user = await User.findOrFail(params.id)
-    const { username, email, password, imgPath, dateOfBirth } = await request.validateUsing(updateUserValidator)
-
-    await user.merge({
-      username,
-      email,
-      password,
-      imgPath,
-      dateOfBirth,
-    }).save()
+    const payload = await request.validateUsing(updateUserValidator)
+    await user.merge(payload).save()
 
     return response.status(201).json({message: "Utilisateur modifié !"})
   }
@@ -57,6 +44,8 @@ export default class UsersController {
    */
   async destroy({ params, response }: HttpContext) {
     const user = await User.findOrFail(params.id)
+    await user.related('reviews').query().delete()
+    await user.related('cocktails').query().delete()
     await user.delete()
 
     return response.status(201).json({message: "Utilisateur supprimé !"})

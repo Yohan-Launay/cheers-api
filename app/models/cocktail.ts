@@ -24,7 +24,7 @@ export default class Cocktail extends BaseModel {
   declare imgPath: string
 
   @column()
-  declare status: string
+  declare status: boolean
 
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>

@@ -6,6 +6,7 @@ import vine from '@vinejs/vine'
  */
 export const createCocktailValidator = vine.compile(
   vine.object({
+    userId: vine.number(),
     name: vine.string(),
     description: vine.string(),
     imgPath: vine.string(),
@@ -19,6 +20,7 @@ export const createCocktailValidator = vine.compile(
  */
 export const updateCocktailValidator = vine.compile(
   vine.object({
+    userId: vine.number(),
     name: vine.string(),
     description: vine.string(),
     imgPath: vine.string(),
