@@ -22,7 +22,9 @@ export default class Ingredient extends BaseModel {
   @column()
   declare volume: number
 
-  @manyToMany(() => Cocktail)
+  @manyToMany(() => Cocktail, {
+    pivotTimestamps: true
+  })
   declare cocktails: ManyToMany<typeof Cocktail>
 
   @column.dateTime({ autoCreate: true })

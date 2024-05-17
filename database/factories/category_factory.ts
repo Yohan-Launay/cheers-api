@@ -7,5 +7,5 @@ export const CategoryFactory = factory
       name: faker.lorem.words(1),
       description: faker.lorem.sentence(),
     }
-  })
+  }).relation('cocktails', () => 'CocktailFactory')  
   .build()

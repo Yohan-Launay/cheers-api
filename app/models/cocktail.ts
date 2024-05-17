@@ -32,13 +32,19 @@ export default class Cocktail extends BaseModel {
   @hasMany(() => Review)
   declare reviews: HasMany<typeof Review>
 
-  @manyToMany(() => Ingredient)
+  @manyToMany(() => Ingredient, {
+    pivotTimestamps: true
+  })
   declare ingredients: ManyToMany<typeof Ingredient>
 
-  @manyToMany(() => Utensil)
+  @manyToMany(() => Utensil, {
+    pivotTimestamps: true
+  })
   declare utensils: ManyToMany<typeof Utensil>
 
-  @manyToMany(() => Category)
+  @manyToMany(() => Category, {
+    pivotTimestamps: true
+  })
   declare categories: ManyToMany<typeof Category>
 
   @column.dateTime({ autoCreate: true })

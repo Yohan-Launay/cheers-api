@@ -10,5 +10,5 @@ export const IngredientFactory = factory
       unit: faker.lorem.words(1),
       volume: faker.number.int({ min: 1, max: 10 }),
     }
-  })
+  }).relation('cocktails', () => 'CocktailFactory')
   .build()

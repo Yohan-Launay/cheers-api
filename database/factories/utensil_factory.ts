@@ -8,5 +8,5 @@ export const UtensilFactory = factory
       description: faker.lorem.sentence(),
       imgPath: faker.lorem.words(1) + '.jpg',
     }
-  })
+  }).relation('cocktails', () => 'CocktailFactory')
   .build()

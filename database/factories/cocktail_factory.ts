@@ -1,6 +1,8 @@
 import factory from '@adonisjs/lucid/factories'
 import Cocktail from '#models/cocktail'
 import { CategoryFactory } from './category_factory.js'
+import { IngredientFactory } from './ingredient_factory.js'
+import { UtensilFactory } from './utensil_factory.js'
 
 export const CocktailFactory = factory
   .define(Cocktail, async ({ faker }) => {
@@ -12,4 +14,6 @@ export const CocktailFactory = factory
       status: true,
     }
   }).relation('categories', () => CategoryFactory)
+  .relation('ingredients', () => IngredientFactory)
+  .relation('utensils', () => UtensilFactory)
   .build()

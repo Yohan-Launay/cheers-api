@@ -16,7 +16,9 @@ export default class Utensil extends BaseModel {
   @column()
   declare imgPath: string
 
-  @manyToMany(() => Cocktail)
+  @manyToMany(() => Cocktail, {
+    pivotTimestamps: true
+  })
   declare cocktails: ManyToMany<typeof Cocktail>
   
   @column.dateTime({ autoCreate: true })

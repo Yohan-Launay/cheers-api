@@ -19,7 +19,7 @@ export default class IndexSeeder extends BaseSeeder {
     // await this.seed(await import('#database/seeders/category_seeder'))
     // await this.seed(await import('#database/seeders/review_seeder'))
     // await this.seed(await import('#database/seeders/step_seeder'))
-    await CocktailFactory.createMany(10)
+    await CocktailFactory.with('categories', 10).with('ingredients', 10).with('utensils', 10).createMany(10)
     await StepFactory.createMany(10)
     await ReviewFactory.createMany(10)
     await CategoryFactory.createMany(10)
