@@ -14,7 +14,7 @@ export default class Category extends BaseModel {
   declare description: string
 
   @manyToMany(() => Cocktail)
-  declare Cocktails: ManyToMany<typeof Cocktail>
+  declare cocktails: ManyToMany<typeof Cocktail>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

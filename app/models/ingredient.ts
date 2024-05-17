@@ -17,10 +17,10 @@ export default class Ingredient extends BaseModel {
   declare imgPath: string
 
   @column()
-  declare unite: string
+  declare unit: string
 
   @column()
-  declare volume: string
+  declare volume: number
 
   @manyToMany(() => Cocktail)
   declare cocktails: ManyToMany<typeof Cocktail>
