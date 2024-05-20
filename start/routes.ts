@@ -7,7 +7,6 @@
 |
 */
 import router from '@adonisjs/core/services/router'
-import User from '#models/user'
 const UsersController = () => import('#controllers/users_controller')
 const CocktailsController = () => import('#controllers/cocktails_controller')
 const ReviewsController = () => import('#controllers/reviews_controller')
@@ -15,14 +14,17 @@ const StepsController = () => import('#controllers/steps_controller')
 const CategoriesController = () => import('#controllers/categories_controller')
 const IngredientsController = () => import('#controllers/ingredients_controller')
 const UtensilsController = () => import('#controllers/utensils_controller')
+const AuthController = () => import('#controllers/auth_controller')
+
+router.get('/', async () => {
+  return { hello: 'world' }
+})
+
+
 
 router.group(() => {
-  router.post('users/:id/tokens', async ({ params }) => {
-    const user = await User.findOrFail(params.id)
-    const token = await User.accessTokens.create(user)
-  
-    return token
-  })
+  router.post('/auth/register', [AuthController, 'register'])
+  router.post('/auth/login', [AuthController, 'login'])
 
   router.get('/users', [UsersController, 'index'])
   router.post('/users', [UsersController, 'store'])
