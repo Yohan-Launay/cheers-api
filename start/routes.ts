@@ -7,6 +7,7 @@
 |
 */
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 const UsersController = () => import('#controllers/users_controller')
 const CocktailsController = () => import('#controllers/cocktails_controller')
 const ReviewsController = () => import('#controllers/reviews_controller')
@@ -16,15 +17,20 @@ const IngredientsController = () => import('#controllers/ingredients_controller'
 const UtensilsController = () => import('#controllers/utensils_controller')
 const AuthController = () => import('#controllers/auth_controller')
 
-router.get('/', async () => {
-  return { hello: 'world' }
-})
+  router.group(() => {
+    router.get('/', async () => {
+      return { hello: 'world' }
+    })
+  }).use(middleware.auth({
+    guards: ['api'],
+  }))
 
 
 
 router.group(() => {
-  router.post('/auth/register', [AuthController, 'register'])
-  router.post('/auth/login', [AuthController, 'login'])
+  router.post('/register', [AuthController, 'register'])
+  router.post('/login', [AuthController, 'login'])
+
 
   router.get('/users', [UsersController, 'index'])
   router.post('/users', [UsersController, 'store'])
