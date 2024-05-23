@@ -14,6 +14,5 @@ export const CocktailFactory = factory
       status: true,
     }
   }).relation('categories', () => CategoryFactory)
-  .relation('ingredients', () => IngredientFactory)
   .relation('utensils', () => UtensilFactory)
   .build()

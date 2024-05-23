@@ -1,5 +1,6 @@
 import { CategoryFactory } from '#database/factories/category_factory'
 import { CocktailFactory } from '#database/factories/cocktail_factory'
+import { CocktailIngredientFactory } from '#database/factories/cocktail_ingredient_factory'
 import { IngredientFactory } from '#database/factories/ingredient_factory'
 import { ReviewFactory } from '#database/factories/review_factory'
 import { StepFactory } from '#database/factories/step_factory'
@@ -19,11 +20,12 @@ export default class IndexSeeder extends BaseSeeder {
     // await this.seed(await import('#database/seeders/category_seeder'))
     // await this.seed(await import('#database/seeders/review_seeder'))
     // await this.seed(await import('#database/seeders/step_seeder'))
-    await CocktailFactory.with('categories', 10).with('ingredients', 10).with('utensils', 10).createMany(10)
+    await CocktailFactory.with('categories', 10).with('utensils', 10).createMany(10)
     await StepFactory.createMany(10)
     await ReviewFactory.createMany(10)
     await CategoryFactory.createMany(10)
     await IngredientFactory.createMany(10)
+    await CocktailIngredientFactory.createMany(10)
     await UtensilFactory.createMany(10)
   }
 }

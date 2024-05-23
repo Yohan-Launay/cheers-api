@@ -3,9 +3,9 @@ import type { BelongsTo, HasMany, ManyToMany } from '@adonisjs/lucid/types/relat
 import { column, BaseModel, belongsTo, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import User from './user.js'
 import Review from './review.js'
-import Ingredient from './ingredient.js'
 import Utensil from './utensil.js'
 import Category from './category.js'
+import CocktailIngredient from './cocktail_ingredient.js'
 
 export default class Cocktail extends BaseModel {
   @column({ isPrimary: true })
@@ -32,10 +32,8 @@ export default class Cocktail extends BaseModel {
   @hasMany(() => Review)
   declare reviews: HasMany<typeof Review>
 
-  @manyToMany(() => Ingredient, {
-    pivotTimestamps: true
-  })
-  declare ingredients: ManyToMany<typeof Ingredient>
+  @hasMany(() => CocktailIngredient)
+  declare cocktailIngredients: HasMany<typeof CocktailIngredient>
 
   @manyToMany(() => Utensil, {
     pivotTimestamps: true

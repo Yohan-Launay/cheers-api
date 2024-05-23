@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import type { ManyToMany } from '@adonisjs/lucid/types/relations'
-import { column, BaseModel, manyToMany } from '@adonisjs/lucid/orm'
+import type { ManyToMany , HasMany } from '@adonisjs/lucid/types/relations'
+import { column, BaseModel, manyToMany, hasMany } from '@adonisjs/lucid/orm'
 import Cocktail from './cocktail.js'
+import CocktailIngredient from './cocktail_ingredient.js'
 
 export default class Ingredient extends BaseModel {
   @column({ isPrimary: true })
@@ -16,16 +17,8 @@ export default class Ingredient extends BaseModel {
   @column()
   declare imgPath: string
 
-  @column()
-  declare unit: string
-
-  @column()
-  declare volume: number
-
-  @manyToMany(() => Cocktail, {
-    pivotTimestamps: true
-  })
-  declare cocktails: ManyToMany<typeof Cocktail>
+  @hasMany(() => CocktailIngredient)
+  declare cocktailIngredients: HasMany<typeof CocktailIngredient>
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

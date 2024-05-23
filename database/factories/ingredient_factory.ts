@@ -7,8 +7,6 @@ export const IngredientFactory = factory
       name: faker.lorem.words(1),
       description: faker.lorem.sentence(),
       imgPath: faker.lorem.words(1) + '.jpg',
-      unit: faker.lorem.words(1),
-      volume: faker.number.int({ min: 1, max: 10 }),
     }
-  }).relation('cocktails', () => 'CocktailFactory')
+  })
   .build()
