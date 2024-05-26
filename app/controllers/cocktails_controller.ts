@@ -13,7 +13,7 @@ export default class CocktailsController {
     .preload('reviews')
     .preload('categories')
     .preload('utensils')
-    .preload('ingredients')
+    .preload('cocktailIngredients')
   }
 
   /**
