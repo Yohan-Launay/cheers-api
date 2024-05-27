@@ -10,9 +10,7 @@ export default class CocktailsController {
     return Cocktail
     .query()
     .preload('user')
-    .preload('reviews')
     .preload('categories')
-    .preload('utensils')
     .preload('cocktailIngredients')
   }
 
@@ -37,7 +35,7 @@ export default class CocktailsController {
     .preload('reviews')
     .preload('categories')
     .preload('utensils')
-    .preload('ingredients')
+    .preload('cocktailIngredients')
     .where('id', params.id)
     .firstOrFail()
   }
