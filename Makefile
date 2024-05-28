@@ -1,5 +1,6 @@
 ADONIS = node ace
 DOCKER = docker-compose
+Arguments := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
 # docker
 up:
@@ -18,7 +19,7 @@ install:
 
 # list
 list:
-	$(ADONIS) list
+	$(ADONIS) list 
 
 routes:
 	$(ADONIS) list:routes
@@ -54,52 +55,49 @@ wipe:
 
 # make
 controller:
-	$(ADONIS) make:controller
+	$(ADONIS) make:controller $(Arguments)
 
 command:
-	$(ADONIS) make:command
+	$(ADONIS) make:command $(Arguments)
 
 event:
-	$(ADONIS) make:event
+	$(ADONIS) make:event $(Arguments)
 
 exception:
-	$(ADONIS) make:exception
+	$(ADONIS) make:exception $(Arguments)
 
 factory:
-	$(ADONIS) make:factory
+	$(ADONIS) make:factory $(Arguments)
 
 listener:
-	$(ADONIS) make:listener
+	$(ADONIS) make:listener $(Arguments)
 
 middleware:
-	$(ADONIS) make:middleware
+	$(ADONIS) make:middleware $(Arguments)
 
 migration:
-	$(ADONIS) make:migration
+	$(ADONIS) make:migration $(Arguments)
 
 model:
-	$(ADONIS) make:model
+	$(ADONIS) make:model $(Arguments)
 
 preload:
-	$(ADONIS) make:preload
+	$(ADONIS) make:preload $(Arguments)
 
 provider:
-	$(ADONIS) make:provider
+	$(ADONIS) make:provider $(Arguments)
 
 seeder:
-	$(ADONIS) make:seeder
+	$(ADONIS) make:seeder $(Arguments)
 
 service:
-	$(ADONIS) make:service
+	$(ADONIS) make:service $(Arguments)
 
 test:
-	$(ADONIS) make:test
+	$(ADONIS) make:test $(Arguments)
 
 validator:
-	$(ADONIS) make:validator
+	$(ADONIS) make:validator $(Arguments)
 
 view:
-	$(ADONIS) make:view
-
-
-
+	$(ADONIS) make:view $(Arguments)
